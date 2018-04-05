@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+ <style type="text/css">
+    body { background-color: #808080; }
+   div {padding: 5px;}
+ 
+
+table.hovertable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.hovertable th {
+	background-color:#c3dde0;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+table.hovertable tr {
+	background-color:#d4e3e5;
+}
+table.hovertable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+  </style>
+
+
+</head>
+
+
+<body>
+<form action="/execute-command/" method="post" enctype="multipart/form-data">
+<div>salt ID:<input type="text" name="t">
+        <input type='submit' name='提'>
+</div>
+</br>
+<div style="color:#666644">执行的命令参数:
+ <select name="salt_parameter">
+  <option value="cmd.run">cmd.run</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+</select>
+</div>
+
+<table class="hovertable">
+<tr>
+	<th>salt_id</th><th>服务器ip</th><th>在线情况</th>
+</tr>
+{% for node,ip in execute_commandd.items %}
+<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+	<td  width="50%">{{ node }}</td><td width="40%">{{ ip.fqdn_ip4.0 }}</td><td width="20%">true</td>
+{% endfor %}
+</tr>
+</table>
+
+</form>
+
+</body>
+</html>
