@@ -85,7 +85,7 @@ cd /home/jumpserver/utils
 bash make_migrations.sh
 ```
 
-##启动jumpserver
+## 启动jumpserver
 cd /home/jumpserver
 ./jms start all   -d
 
