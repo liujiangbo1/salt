@@ -85,7 +85,7 @@ cd /home/jumpserver/utils
 bash make_migrations.sh
 ```
 
-##启动jumpserver
+## 启动jumpserver
 cd /home/jumpserver
 ./jms start all   -d
 
@@ -210,13 +210,13 @@ $ cd /home/coco
 
 ```
 如果登录客户端是 macOS 或 Linux ，登录语法如下
-$ ssh -p2222 admin@192.168.244.144
-$ sftp -P2222 admin@192.168.244.144
+$ ssh -p2222 admin@192.168.200.150
+$ sftp -P2222 admin@192.168.200.150
 密码: admin
 
 如果登录客户端是 Windows ，Xshell Terminal 登录语法如下
-$ ssh admin@192.168.244.144 2222
-$ sftp admin@192.168.244.144 2222
+$ ssh admin@192.168.200.150 2222
+$ sftp admin@192.168.200.150 2222
 密码: admin
 如果能登陆代表部署成功，这个可以登录到命令行的选项处。
 
