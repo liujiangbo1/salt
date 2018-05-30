@@ -33,4 +33,5 @@ Host里添加下面配置段：
 ```
 
 重启tomcat nginx就可以了
+http://tomcat.apache.org/tomcat-6.0-doc/api/org/apache/catalina/valves/RemoteIpValve.html#protocolHeader
 
