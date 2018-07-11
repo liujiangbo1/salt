@@ -7,7 +7,7 @@ tar zxvf redis-3.2.6.tar.gz
 
 cd redis-3.2.6
 make
-make install
+make  PREFIX=/usr/local/redis  install
 mkdir /etc/redis
 mkdir /var/log/redis -p
 mkdir /opt/redis -p
@@ -34,7 +34,7 @@ sed -i 's/appendonly no/appendonly yes/g' /etc/redis/6389.conf
 sed -i 's/appendfilename "appendonly.aof"/appendfilename "appendonly_6389.aof"/g' /etc/redis/6389.conf
 #修改pid文件名称
 sed -i 's#pidfile /var/run/redis_6379.pid#pidfile /var/run/redis_6389.pid#g' /etc/redis/6389.conf
-
+sed  -i 's/127.0.0.1/0.0.0.0/' /etc/redis/6389.conf
 ## 配置守护脚本，命名规则为"redis端口号"，例如"redis6389"
 echo '#!/bin/sh
 #chkconfig: 2345 58 68
@@ -80,4 +80,5 @@ case "$1" in
         echo "Please use start or stop as first argument"
         ;;
 esac' > /etc/init.d/redis6389
-
+cd /usr/local/redis/bin/
+cp redis-benchmark redis-cli redis-server  redis-sentinel  /usr/bin/
