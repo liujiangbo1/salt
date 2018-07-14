@@ -132,6 +132,9 @@ done
 
 
 #####修改命令行样式
+touch /etc/profile.d/ps.sh
+cat <<EoF> /etc/profile.d/ps.sh
+
 export PS1='\n\
 [\[\e[36m\]\u\[\e[0m\]\
 @\
@@ -147,3 +150,5 @@ $(RETVAL="$?"; echo -en "\e[33m$(date +'%H:%M:%S') ";
 \[\e[0;1;34m\]\$ \[\e[0m\]'
 
 export GREP_OPTIONS='--color=auto'
+EOF
+source  /etc/profile.d/ps.sh
