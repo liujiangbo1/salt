@@ -152,3 +152,4 @@ $(RETVAL="$?"; echo -en "\e[33m$(date +'%H:%M:%S') ";
 export GREP_OPTIONS='--color=auto'
 EOF
 source  /etc/profile.d/ps.sh
+yum update
