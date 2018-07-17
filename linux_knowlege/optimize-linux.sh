@@ -152,4 +152,8 @@ $(RETVAL="$?"; echo -en "\e[33m$(date +'%H:%M:%S') ";
 export GREP_OPTIONS='--color=auto'
 EOF
 source  /etc/profile.d/ps.sh
+#减少swap的使用，尽量使用内存，减少内存也换进换出，影响性能
+#或者 echo  "vm.swappiness=10" >/etc/sysctl.conf
+echo "10" > /proc/sys/vm/swappiness
+
 yum update
