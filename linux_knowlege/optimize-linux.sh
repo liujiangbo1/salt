@@ -9,7 +9,7 @@ cat  << EOF  >> /etc/security/limits.conf
 EOF
 
 
-sed  -i  "s/4096/65535/g" /etc/security/limits.d/20-nproc.conf
+sed  -i  "s/4096/131070/g" /etc/security/limits.d/20-nproc.conf
 
 sed  -i "s/SELINUX=enforcing/SELINUX=disabled/g"   /etc/selinux/config
 
@@ -40,6 +40,8 @@ net.ipv4.tcp_synack_retries = 1
 net.ipv4.tcp_syn_retries = 1
 net.ipv4.tcp_tw_recycle = 1
 net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_syncookies= 1
+net.ipv4.tcp_fin_timeout= 30
 net.ipv4.tcp_mem = 94500000 915000000 927000000
 net.ipv4.tcp_fin_timeout = 15
 net.ipv4.tcp_keepalive_time = 600
@@ -53,10 +55,6 @@ vm.overcommit_memory = 1
 EOF
 
 sysctl  -p
-
-
-
-
 
 ####需要安装包
 package=(
@@ -129,12 +127,9 @@ do
 yum install -y $i
 done
 
-
-
 #####修改命令行样式
 touch /etc/profile.d/ps.sh
 cat <<EoF> /etc/profile.d/ps.sh
-
 export PS1='\n\
 [\[\e[36m\]\u\[\e[0m\]\
 @\
