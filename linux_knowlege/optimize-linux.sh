@@ -112,6 +112,7 @@ libaio
 libaio-devel
 expect
 dmidecode
+net-tools
 cmake
 patch
 readline-devel
@@ -129,7 +130,7 @@ done
 
 #####修改命令行样式
 touch /etc/profile.d/ps.sh
-cat <<EoF> /etc/profile.d/ps.sh
+cat <<EOF> /etc/profile.d/ps.sh
 export PS1='\n\
 [\[\e[36m\]\u\[\e[0m\]\
 @\
@@ -146,9 +147,11 @@ $(RETVAL="$?"; echo -en "\e[33m$(date +'%H:%M:%S') ";
 
 export GREP_OPTIONS='--color=auto'
 EOF
+
+
 source  /etc/profile.d/ps.sh
 #减少swap的使用，尽量使用内存，减少内存也换进换出，影响性能
 #或者 echo  "vm.swappiness=10" >/etc/sysctl.conf
 echo "10" > /proc/sys/vm/swappiness
 
-yum update
+#yum update
