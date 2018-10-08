@@ -17,6 +17,7 @@ $ iblocklist2ipset generate \
 $ sudo ipset restore -f ~/.ipset
 
 结果入如下：
+```
 [root@localhost ~]# cat  ipset
 create idiots hash:net family inet hashsize 512 maxelem 514
 add idiots 2.56.0.0/14
@@ -34,5 +35,6 @@ add idiots 42.1.128.0/17
 add idiots 46.29.248.0/22
 add idiots 46.148.112.0/20
 add idiots 49.8.0.0/14
+```
 。。。。。
 这是自动生成的 ipset
