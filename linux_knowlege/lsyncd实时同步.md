@@ -135,8 +135,9 @@ sync {
     delay = 1
     maxProcesses = 1
     }
-
+```
 -- II. 本地目录同步，rsync模式：rsync
+```
 sync {
     default.rsync,
     source    = "/tmp/src",
