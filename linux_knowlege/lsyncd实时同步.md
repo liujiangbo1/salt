@@ -79,8 +79,8 @@ source 同步的源目录，使用绝对路径。
 
 target 定义目的地址.对应不同的模式有几种写法：
 /tmp/dest ：本地目录同步，可用于direct和rsync模式
-172.29.88.223:/tmp/dest ：同步到远程服务器目录，可用于rsync和rsyncssh模式，拼接的命令类似于/usr/bin/rsync -ltsd --delete --include-from=- --exclude=* SOURCE TARGET，剩下的就是rsync的内容了，比如指定username，免密码同步
-172.29.88.223::module ：同步到远程服务器目录，用于rsync模式
+x.x.x.x:/tmp/dest ：同步到远程服务器目录，可用于rsync和rsyncssh模式，拼接的命令类似于/usr/bin/rsync -ltsd --delete --include-from=- --exclude=* SOURCE TARGET，剩下的就是rsync的内容了，比如指定username，免密码同步
+x.x.x.x::module ：同步到远程服务器目录，用于rsync模式
 三种模式的示例会在后面给出。
 
 init 这是一个优化选项，当init = false，只同步进程启动以后发生改动事件的文件，原有的目录即使有差异也不会同步。默认是true
@@ -149,7 +149,7 @@ sync {
 sync {
     default.rsync,
     source    = "/tmp/src",
-    target    = "syncuser@172.29.88.223::module1",
+    target    = "syncuser@x.x.x.x::module1",
     delete="running",
     exclude = { ".*", ".tmp" },
     delay = 30,
@@ -168,8 +168,8 @@ sync {
 sync {
     default.rsync,
     source    = "/tmp/src",
-    target    = "172.29.88.223:/tmp/dest",
-    -- target    = "root@172.29.88.223:/remote/dest",
+    target    = "x.x.x.x:/tmp/dest",
+    -- target    = "root@x.x.x.x:/remote/dest",
     -- 上面target，注意如果是普通用户，必须拥有写权限
     maxDelays = 5,
     delay = 30,
@@ -188,7 +188,7 @@ sync {
 sync {
     default.rsyncssh,
     source    = "/tmp/src2",
-    host      = "172.29.88.223",
+    host      = "x.x.x.x",
     targetdir = "/remote/dir",
     excludeFrom = "/etc/rsyncd.d/rsync_exclude.lst",
     -- maxDelays = 5,
