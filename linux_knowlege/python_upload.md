@@ -1,12 +1,12 @@
 1  使用requests模块来实现简单的上传文件
-
+```
 #!/usr/bin/env python
 
 import requests
 url='http://cs.itgo88.com'
 files={'my_file': open('file_path','rb')}
 r=requests.post(url,files=files)
-
+```
 2  使用poster模块来上传文件：
 ```
 #!/usr/bin/env python
