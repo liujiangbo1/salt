@@ -125,6 +125,7 @@ settings {
     maxProcesses = 8,
     }
 ```
+```
 
 -- I. 本地目录同步，direct：cp/rm/mv。 适用：500+万文件，变动不大
 ```
