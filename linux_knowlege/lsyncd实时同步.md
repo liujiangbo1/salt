@@ -1,3 +1,4 @@
+```
 sync{
 default.rsyncssh, 
 source="/home/wwwroot",  
@@ -12,6 +13,7 @@ init =  false,
 	
 	}
 }
+```
 1. lsyncd
 
 Lysncd 是lua语言封装了 inotify 和 rsync 工具，采用了 Linux 内核（2.6.13 及以后）里的 inotify 触发机制，然后通过rsync去差异同步，达到实时的效果。我认为它最令人称道的特性是，完美解决了 inotify + rsync海量文件同步带来的文件频繁发送文件列表的问题 —— 通过时间延迟或累计触发事件次数实现。另外，它的配置方式很简单，lua本身就是一种配置语言，可读性非常强。lsyncd也有多种工作模式可以选择，本地目录cp，本地目录rsync，远程目录rsyncssh。
@@ -35,6 +37,7 @@ Lysncd 是lua语言封装了 inotify 和 rsync 工具，采用了 Linux 内核�
 # cd /usr/local/lsyncd-2.1.5
 # mkdir etc var
 # vi etc/lsyncd.conf
+```
 settings {
     logfile      ="/usr/local/lsyncd-2.1.5/var/lsyncd.log",
     statusFile   ="/usr/local/lsyncd-2.1.5/var/lsyncd.status",
@@ -55,6 +58,7 @@ sync {
         verbose   = true
         }
     }
+    ```
 到这启动 lsycnd 就可以完成实时同步了，默认的许多参数可以满足绝大部分需求，非常简单。
 
 2.2.2 lsyncd.conf配置选项说明
@@ -113,16 +117,17 @@ lsyncd.conf可以有多个sync，各自的source，各自的target，各自的�
 lsyncd -log Exec /usr/local/lsyncd-2.1.5/etc/lsyncd.conf
 2.4 lsyncd.conf其它模式示例
 以下配置本人都已经过验证可行，必须根据实际需要裁剪配置：
-
+```
 settings {
     logfile ="/usr/local/lsyncd-2.1.5/var/lsyncd.log",
     statusFile ="/usr/local/lsyncd-2.1.5/var/lsyncd.status",
     inotifyMode = "CloseWrite",
     maxProcesses = 8,
     }
-
+```
 
 -- I. 本地目录同步，direct：cp/rm/mv。 适用：500+万文件，变动不大
+```
 sync {
     default.direct,
     source    = "/tmp/src",
@@ -144,8 +149,10 @@ sync {
         bwlimit   = 2000
         } 
     }
+```
 
 -- III. 远程目录同步，rsync模式 + rsyncd daemon
+```
 sync {
     default.rsync,
     source    = "/tmp/src",
@@ -163,8 +170,9 @@ sync {
         _extra    = {"--bwlimit=200"}
         }
     }
-
+```
 -- IV. 远程目录同步，rsync模式 + ssh shell
+```
 sync {
     default.rsync,
     source    = "/tmp/src",
@@ -183,8 +191,9 @@ sync {
         -- 如果要指定其它端口，请用上面的rsh
         }
     }
-
+```
 -- V. 远程目录同步，rsync模式 + rsyncssh，效果与上面相同
+```
 sync {
     default.rsyncssh,
     source    = "/tmp/src2",
@@ -206,3 +215,4 @@ sync {
         }
     }
 
+```
