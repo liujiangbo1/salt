@@ -1,6 +1,6 @@
 1创建polls app，修改py文件
 vim model.py
-
+```
 from django.db import models
 
 # Create your models here.
@@ -11,18 +11,18 @@ def user_directory_path(instance, filename):
 class FileModel(models.Model):
     title = models.CharField(max_length=50)
     file = models.FileField(upload_to=user_directory_path)
-
+```
 2.创建forms.py,加入下面内容：
 
-
+```
 class UploadFileForm(forms.Form):
     my_file = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
-
+```
 
 
 3. vim views.py，加入下面内容：
 
-
+```
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -62,7 +62,7 @@ def upload(request):
         form = UploadFileForm()
     return render(request, 'upload.html', {'form': form})
 
-
+```
 
 [root@localhost /home/django-cs/mysite] 13:29:22 0
 $ ll
@@ -74,7 +74,7 @@ drwxr-xr-x 5 root root 4096 Sep 25 17:44 polls
 drwxr-xr-x 2 root root   24 Sep 25 14:37 templates
 
 cd  templates,并且vim  upload.html
-
+```
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -92,13 +92,14 @@ cd  templates,并且vim  upload.html
     </form>
 </body>
 </html
-
+```
 5. 修改url.py
+```
 from polls  import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('upload/', views.upload),
     path('', views.upload),
-
+```
 
 
