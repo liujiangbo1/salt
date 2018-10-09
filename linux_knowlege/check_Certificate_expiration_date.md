@@ -1,4 +1,5 @@
 域名比较多，域名到期有时候都不知道，这个可以将证书的期限打印出来
+```
 import os,time
 import sys
 import glob
@@ -20,4 +21,4 @@ for i in FileName:
 #pwdd=os.chdir('/usr/local/nginx')
 #print(os.listdir('./'))
 #print(os.listdir(pwdd))
-
+```
