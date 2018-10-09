@@ -3,7 +3,7 @@
 #!/usr/bin/env python
 
 import requests
-url='http://cs.itgo88.com'
+url='http://xxx.xxx.com'
 files={'my_file': open('file_path','rb')}
 r=requests.post(url,files=files)
 ```
