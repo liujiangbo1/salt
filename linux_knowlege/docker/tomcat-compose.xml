@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  tomcat1:
+    build: .
+    restart: always
+    ports:
+      - 81:6666
+    volumes:
+      - ./logs/tomcat1:/usr/local/tomcat/logs/catalina.out
+      - ./code/tomcat1:/usr/local/tomcat/webapps/bw
+
+  tomcat2:
+    build: .
+    restart: always
+    ports:
+      - 82:6666
+    volumes:
+      - ./logs/tomcat2:/usr/local/tomcat/logs/catalina.out
+      - ./code/tomcat2:/usr/local/tomcat/webapps/bw
+
+
+  tomcat3:
+    build: .
+    restart: always
+    ports:
+      - 83:6666
+    volumes:
+      - ./logs/tomcat3:/usr/local/tomcat/logs/catalina.out
+      - ./code/tomcat:/usr/local/tomcat/webapps/bw       
