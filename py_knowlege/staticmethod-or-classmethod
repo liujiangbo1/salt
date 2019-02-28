@@ -1,0 +1,57 @@
+一、总体说明
+
+python类里会出现这三个单词，self和cls都可以用别的单词代替，类的方法有三种，
+
+一是通过def定义的 普通的一般的，需要至少传递一个参数，一般用self，这样的方法必须通过一个类的实例去访问，类似于c++中通过对象去访问；
+
+二是在def前面加上@classmethod，这种类方法的一个特点就是可以通过类名去调用，但是也必须传递一个参数，一般用cls表示class，表示可以通过类直接调用；
+
+三是在def前面加上@staticmethod，这种类方法是静态的类方法，类似于c++的静态函数，他的一个特点是参数可以为空，同样支持类名和对象两种调用方式；
+
+普通的方法，第一个参数需要是self，它表示一个具体的实例本身。
+如果用了staticmethod，那么就可以无视这个self，而将这个方法当成一个普通的函数使用。
+而对于classmethod，它的第一个参数不是self，是cls，它表示这个类本身。
+>>> class A(object):
+    def foo1(self):
+        print "Hello",self
+    @staticmethod
+    def foo2():
+        print "hello"
+    @classmethod
+    def foo3(cls):
+        print "hello",cls  
+>>> a = A()
+>>> a.foo1()          #最常见的调用方式，但与下面的方式相同
+Hello <__main__.A object at 0x9f6abec>
+>>> A.foo1(a)         #这里传入实例a，相当于普通方法的self
+Hello <__main__.A object at 0x9f6abec>
+>>> A.foo2()          #这里，由于静态方法没有参数，故可以不传东西
+hello
+>>> A.foo3()          #这里，由于是类方法，因此，它的第一个参数为类本身。
+hello <class '__main__.A'>
+>>> A                 #可以看到，直接输入A，与上面那种调用返回同样的信息。
+<class '__main__.A'>
+
+二、深入理解
+
+其实self，cls不是关键字，例如
+
+class A:
+    member = "this is a test."
+    def __init__(self):
+        pass
+    @classmethod
+    def Print1(cls):
+        print "print 1: ", cls.membe 
+    def Print2(self):
+        print "print 2: ", self.member
+               
+    @classmethod    
+    def Print3(paraTest):
+        print "print 3: ", paraTest.member
+ 
+a = A()
+A.Print1()   #相当于Print1(A)
+a.Print2()   #相当于Print2(a)， 请注意@classmethod
+A.Print3()   
+可以看出来，python在通过“.”调用成员函数的时候，会将“.”前面的东西当作函数的第一个参数调用。而且pyhon并不关心我们把类的成员函数的第一个参数的名称是什么，我们可以用任意的名称，可以看Print3的定义就知道了。

@@ -1,0 +1,132 @@
+setname:                       #ipset组的名称 
+  ipset.set_present:            #检验这个setname是否存在，不存在则创建
+    - set_type: bitmap:ip       #设置类型
+    - range: 192.168.0.0/16      #ip段用range，ip用entry
+    - comment: True
+
+setname:
+  ipset.set_absent:              #从组中那个删除一条规则
+    - set_type: bitmap:ip         #设置类型
+    - range: 192.168.0.0/16
+    - comment: True
+
+setname_entries:
+  ipset.present:
+    - set_name: setname
+    - entry: 192.168.0.3
+    - comment: Hello
+    - require:
+        - ipset: baz
+
+weboffice_entries:                      #批量添加ip地址
+  ipset.present:                         #添加一个地址到这个组里面
+    - set_name: weboffice                 #ipset组名
+    - entry:                              #添加多个ip
+        - 192.168.0.3
+        - 192.168.1.3
+    - comment: Hello
+    - require:
+        - ipset: baz
+
+setname_entries:
+  ipset.absent:
+    - set_name: setname
+    - entry:
+        - 192.168.0.3
+        - 192.168.1.3
+    - comment: Hello
+    - require:
+        - ipset: baz
+
+setname:
+  ipset.flush:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+一、常用命令帮助
+  查看所有的module列表
+    salt ’*‘ sys.list_modules
+
+  查看指定modules用法
+root@node /srv/salt 21:02:542# salt master1 sys.list_functions ssh
+master1:
+    - ssh.auth_keys
+    - ssh.check_key
+    - ssh.check_key_file
+    - ssh.check_known_host
+
+
+  查看指定modules的具体用法
+root@node /srv/salt 21:03:172# salt master1 sys.doc ssh.auth_keys
+ssh.auth_keys:
+
+    Return the authorized keys for users
+
+    CLI Example:
+
+        salt '*' ssh.auth_keys
+        salt '*' ssh.auth_keys root
+        salt '*' ssh.auth_keys user=root
+        salt '*' ssh.auth_keys user="[user1, user2]"
+
+
+
+
+二、cdn节点批量添加
+1.批量添加cdn节点加白
+ 批量执行添加cdn操作,以web_app_nginx-zb-hk_nw-193.54为例：
+salt web_app_nginx-zb-hk_nw-193.54  state.sls base.add_many_cdn_ipset saltenv=base test=True
+执行没有问题之后，将test=True去掉，再次执行
+
+2.单独添加cdn节点加白并检测是否成功
+salt web_app_nginx-zb-hk_nw-193.54 ipset.add cdn_test 193.123.234.156,执行完成后，看下有没有成功，执行：
+salt web_app_nginx-zb-hk_nw-193.54  ipset.check  cdn_test '193.123.234.156',返回true添加成功，否则添失败
+
+3.检查ipset组是否存在
+检查机器上的ipset是否有cdn组：salt '*' ipset.check_set cdn_test
+
+4.删除指定的ipset组中的成员
+salt '*' ipset.delete cdn_test  192.168.0.3
+
+5..删除指定的ipset组
+salt '*' ipset.delete_set cdn_test
+
+6.列出所有的ipset组
+salt '*' ipset.list_sets
+
+7.创建新的ipset组
+salt '*' ipset.new_set custom_set list:set
+
+salt '*' ipset.new_set custom_set list:set comment=True
+
+8.检查测一个记录是否在指定的组里
+salt '*' ipset.test setname 192.168.0.2
+
+9.检查ipset版本
+salt '*' ipset.version8.检查测一个记录是否在指定的组里
+salt '*' ipset.test setname 192.168.0.2
+
+10.检查ipset版本
+salt '*' ipset.version
+
+参考：https://docs.saltstack.com/en/latest/ref/states/all/salt.states.ipset.html#salt.states.ipset.set_present

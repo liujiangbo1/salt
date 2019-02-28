@@ -1,0 +1,85 @@
+    body { background-color: #808080; }
+   div {padding: 5px;}
+
+   .right {
+        text-align: right;
+        border: 1px dotted black;
+        width: 50%;
+}
+
+
+table.hovertable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.hovertable th {
+	background-color:#c3dde0;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+table.hovertable tr {
+	background-color:#d4e3e5;
+}
+table.hovertable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+
+
+
+ body{font:"宋体";font-size:12px;}
+        a:link,a:visited{font-size:12px;color:#666;text-decoration:none;}
+        a:hover{color:#ff0000;text-decoration:underline;}
+        #Tab{margin:0 auto;width:220px;border:1px solid #BCE2F3;}
+        .Menubox{height:28px;border-bottom:1px solid #64B8E4;background:#E4F2FB;}
+        .Menubox ul{list-style:none;margin:7px 40px;padding:0;position:absolute;}
+        .Menubox ul li{float:left;background:#64B8E4;line-height:20px;display:block;cursor:pointer;width:65px;text-align:center;color:#fff;font-weight:bold;border-top:1px solid #64B8E4;border-left:1px solid #64B8E4;border-right:1px solid #64B8E4;}
+        .Menubox ul li.hover{background:#fff;border-bottom:1px solid #fff;color:#147AB8;}
+        .Contentbox{clear:both;margin-top:0px;border-top:none;height:181px;padding-top:8px;height:100%;}
+        .Contentbox ul{list-style:none;margin:7px;padding:0;}
+        .Contentbox ul li{line-height:24px;border-bottom:1px dotted #ccc;}
+
+
+
+
+
+  a:hover{text-decoration: none;}
+  .btn{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 24px;
+    border-radius: 4px;
+    background-color: #63b7ff;
+    color: #fff;
+    cursor: pointer;
+  }
+  .btn:hover{
+    background-color: #99c6ff;
+  }
+  . inbtn{
+    border: none;
+  }
+  .bubtn{
+    border: none;
+  }
+  .btn{
+    font-style: normal;
+  }
+  .bgbtn span{
+    margin-left: 10px;
+    padding-left: 20px;
+    background: url(images/edit.png) left center no-repeat;
+  }
+  .bgbtn02 img{
+    margin-bottom: -3px;
+    margin-right: 10px;
+  }
+

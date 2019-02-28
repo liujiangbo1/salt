@@ -1,0 +1,44 @@
+##追踪命令   先看系统自带的time命令
+root@localhost.localdomain /home/salt/salt/salt_api/linux_knowlege 01:52:582# time ls
+
+real	0m0.014s（从命令开始到结束用的时间）
+user	0m0.000s（真是执行命令的时间）
+sys	0m0.003s（调用系统所消耗的时间）
+然后用yum安装time，效果如下：
+root@localhost.localdomain /home/salt/salt/salt_api/linux_knowlege 01:53:012# /usr/bin/time ls
+time         timedatectl  timeout
+root@localhost.localdomain /home/salt/salt/salt_api/linux_knowlege 01:53:012# /usr/bin/time ls
+0.00user 0.00system 0:00.01elapsed 9%CPU (0avgtext+0avgdata 944maxresident)k
+0inputs+0outputs (0major+290minor)pagefaults 0swaps
+加个“-v”参数：
+oot@localhost.localdomain ~ 02:07:022# /usr/bin/time -v ls
+111.py		       flannel-v0.9.0-linux-amd64.tar.gz     paramiko-2.0.0.tar.gz  pygal.pyc		   test.sh
+anaconda-ks.cfg        foobarcom.sls			     pip-1.5.6		    pyOpenSSL-0.10.tar.gz  top.sls
+CherryPy-3.2.4	       halite				     pip-1.5.6.tar.gz	    pyOpenSSL-0.11.tar.gz  top.sls_bak
+CherryPy-3.2.4.tar.gz  kubernetes			     prod		    shell_dict.sh	   ttt
+dev		       kubernetes-server-linux-amd64.tar.gz  __pycache__	    test1.sh		   zabbix
+django-master	       minikube.sh			     pygal.py		    test2.sh
+	Command being timed: "ls"
+	User time (seconds): 0.00
+	System time (seconds): 0.00
+	Percent of CPU this job got: 15%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.01
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 992
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 303
+	Voluntary context switches: 1
+	Involuntary context switches: 0
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
